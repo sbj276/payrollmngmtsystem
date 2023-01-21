@@ -3,6 +3,7 @@ package com.payrollsystem.payrollMgtsys.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.payrollsystem.payrollMgtsys.excephandl.EmployeeNotExist;
 import com.payrollsystem.payrollMgtsys.model.Education;
 import com.payrollsystem.payrollMgtsys.model.Employee;
 import com.payrollsystem.payrollMgtsys.repo.EmployeeDetailRepo;
@@ -16,8 +17,14 @@ public class EmployeeDetailImpl implements EmployeeDetailInterface {
 
 	@Override
 	public boolean addEmployee(Employee emp) {
+		
 		employeeDetailsRepo.save(emp);		
 		return true;
+	}
+
+	@Override
+	public Employee getEmployee(int id) {
+		return employeeDetailsRepo.findById(id).orElse(null);
 	}
 	
 	
